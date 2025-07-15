@@ -87,14 +87,16 @@ const GameController = function(name1, name2) {
         ++moves;
         win = checkWin();
         if (win != '') {
+            const resultText = document.createElement("p");
             if (win == ' ') {
-                console.log("Nobody wins");
+                resultText.textContent = "Nobody wins";
             } else if (win == 'O') {
-                console.log(`${playerO} wins`);
+                resultText.textContent = `${playerO} wins`;
             } else {
-                console.log(`${playerX} wins`);
+                resultText.textContent = `${playerX} wins`;
             }
-            console.log(toString());
+            const result = document.querySelector(".result");
+            result.appendChild(resultText);
         }
     }
 
@@ -110,11 +112,15 @@ const GameController = function(name1, name2) {
     }
 
     redrawDom();
-    return {
-        toString,
-        makeMove,
-        clear
-    }
 };
 
-GameController("A", "B");
+const form = document.querySelector("form");
+form.addEventListener("submit", (event) => {
+    const data = form.elements;
+    const btn = document.querySelector("button");
+    document.querySelector(".result").replaceChildren();
+    btn.textContent = "Restart";
+    GameController(data["playerO"].value, data["playerX"].value);
+    event.preventDefault();
+})
+
