@@ -1,6 +1,6 @@
 console.log("The script is running")
 
-const GameController = (function(name1, name2) {
+const GameController = function(name1, name2) {
     const domBoard = document.querySelector(".board");
     const playerO = name1;
     const playerX = name2;
@@ -8,6 +8,25 @@ const GameController = (function(name1, name2) {
     let turn = 'O';
     let win = '';
     const board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']];
+
+    function redrawDom() {
+        domBoard.replaceChildren();
+        for (let i = 0; i < board.length; ++i) {
+            for (let j = 0; j < board[i].length; ++j) {
+                const newChild = document.createElement("button");
+                if (board[i][j] != ' ' || win != '') {
+                    newChild.setAttribute("disabled", "");
+                } else {
+                    newChild.addEventListener("click", () => {
+                        makeMove(i, j);
+                        redrawDom();
+                    })
+                }
+                newChild.textContent = board[i][j];
+                domBoard.appendChild(newChild);
+            }
+        }
+    }
 
     function toString() {
         let res = '';
@@ -76,7 +95,6 @@ const GameController = (function(name1, name2) {
                 console.log(`${playerX} wins`);
             }
             console.log(toString());
-            clear();
         }
     }
 
@@ -91,18 +109,12 @@ const GameController = (function(name1, name2) {
         win = '';
     }
 
+    redrawDom();
     return {
         toString,
-        makeMove
+        makeMove,
+        clear
     }
-}("PlayerO", "PlayerX"));
+};
 
-board.makeMove(0, 0);
-board.makeMove(0, 1);
-board.makeMove(0, 2);
-console.log(board.toString());
-board.makeMove(1, 0);
-board.makeMove(1, 1);
-board.makeMove(1, 2);
-console.log(board.toString());
-board.makeMove(2, 0);
+GameController("A", "B");
