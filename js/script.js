@@ -1,6 +1,7 @@
 console.log("The script is running")
 
-const board = (function ticTacToe(name1, name2) {
+const GameController = (function(name1, name2) {
+    const domBoard = document.querySelector(".board");
     const playerO = name1;
     const playerX = name2;
     let moves = 0;
@@ -75,7 +76,7 @@ const board = (function ticTacToe(name1, name2) {
                 console.log(`${playerX} wins`);
             }
             console.log(toString());
-            // clear();
+            clear();
         }
     }
 
