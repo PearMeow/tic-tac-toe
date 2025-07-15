@@ -1,4 +1,4 @@
-<h1 align="center">tic-tac-toe</h1>
+<h1 align="center">Tic-tac-toe</h1>
 Tic-tac-toe project for TOP
 
 Features
