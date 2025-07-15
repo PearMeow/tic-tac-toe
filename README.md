@@ -3,7 +3,7 @@ Tic-tac-toe project for TOP
 
 Features
 --------
-- A minimal Tic-Tac-Toe game.
+- A minimal Tic-tac-toe game.
 - Compete with up to one other player (locally).
 - O always goes first, because O is cooler than X.
 - Results displayed on winning, losing, or tieing.
